@@ -1,31 +1,74 @@
-import logo from '../../images/Project logo.png'
+import React from 'react';
+import axios from 'axios'; // Import Axios
+import { Link,useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+import logo from '../../images/Project logo.png';
+
 export default function Register() {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      uname:data.get('uname'),
+      email: data.get('email'),
+      mobile: data.get('mobile'),
+      accountNumber: data.get('accountNumber'),
+      password: data.get('password'),
+    });
+
+    try {
+      const response = await axios.post('http://localhost:8081/insert', {
+        usname:data.get('username'),
+        email: data.get('email'),
+        mobile: data.get('mobile'),
+        accountNumber: data.get('accountNumber'),
+        password: data.get('password'),
+        balance:100000
+      });
+      console.log(response.data);
+      
+      // Redirect to the login page after successful registration
+      navigate("/login"); // Redirect to the login page
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-2">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-42 w-auto"
-            src={logo}
-            alt="Your Company"
-          />
+          <Link to="/">
+            <img
+              className="mx-auto h-42 w-auto"
+              src={logo}
+              alt="Your Company"
+            />
+          </Link>
           <h2 className="text-center text-2xl font-bold leading-5 tracking-tight text-gray-900">
             Sign up to your account
           </h2>
         </div>
 
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
+              </label>
+              <div className="mt-2">
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="off"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -97,7 +140,6 @@ export default function Register() {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              
             </div>
 
             <div>
@@ -119,5 +161,5 @@ export default function Register() {
         </div>
       </div>
     </>
-  )
+  );
 }
