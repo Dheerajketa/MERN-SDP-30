@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/data/Login';
 import Stats from './components/Home/Stats'
 import Register from './components/data/Register';
+import Dashboard from './components/user/Dashboard';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navbare from './components/Home/Navbar';
 
