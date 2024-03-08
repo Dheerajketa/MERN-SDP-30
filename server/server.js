@@ -1,43 +1,45 @@
+const express = require('express');
+const cors = require('cors');
 const { MongoClient } = require('mongodb');
-const MONGODB_URI = 'mongodb+srv://admin:admin@cluster0.beosynx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const DB_NAME = 'banking';
+const bcrypt = require('bcrypt');
 
-async function addExampleData() {
-  try {
-    // Connect to MongoDB
-    const client = new MongoClient(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-    await client.connect();
+const app = express(); // Change to `express()` instead of `new express()`
+app.use(express.json());
+app.use(cors());
 
-    const db = client.db(DB_NAME);
-    const usersCollection = db.collection('banking');
+const client = new MongoClient('mongodb+srv://admin:admin@cluster0.beosynx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
 
-    // Example data
-    const exampleUsers = [
-      {
-        email: 'example1@example.com',
-        mobile: '1234567890',
-        accountNumber: '1234567890',
-        password: 'password1'
-      },
-      {
-        email: 'example2@example.com',
-        mobile: '9876543210',
-        accountNumber: '0987654321',
-        password: 'password2'
-      }
-    ];
-
-    // Insert example data into the users collection
-    await usersCollection.insertMany(exampleUsers);
-
-    console.log('Example data added successfully');
-
-    // Close the connection
-    client.close();
-  } catch (err) {
-    console.error('Error adding example data:', err);
-  }
+async function connectToMongoDB() {
+    try {
+        await client.connect();
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
 }
 
-// Call the function to add example data
-addExampleData();
+connectToMongoDB();
+
+const db = client.db("banking");
+const col = db.collection("banking");
+
+app.get('/home', (req, res) => {
+    res.send("Hello World");
+});
+
+app.post('/insert', async (req, res) => {
+    try {
+        // Hash the password before inserting into the database
+        req.body.password = await bcrypt.hash(req.body.password, 5);
+        await col.insertOne(req.body); // Await the insertion operation
+        res.send("Data Received");
+    } catch (error) {
+        console.error("Error inserting data:", error);
+        res.status(500).send("Error inserting data");
+    }
+});
+
+const PORT = process.env.PORT || 8081; // Allow the port to be set by environment variable
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

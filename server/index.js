@@ -14,16 +14,14 @@ app.get('/home', (req, res) => {
     res.send("Hello World");
 });
 
-app.post('/register', async (req, res) => {
-    try {
-        await col.insertOne(req.body);
-        res.status(201).send("User registered successfully");
-    } catch (error) {
-        console.error("Error registering user:", error);
-        res.status(500).send("Internal server error");
-    }
-});
+app.post('/insert', async (req, res) => {
+    //every request will have header and body section
+    //req = {header: ...., body: actual_data}
+    req.body.password = await bcrypt.hash(req.body.password, 5)
+    console.log(req.body);
+    col.insertOne(req.body);
+    res.send("Data Received")
+})
 
-app.listen(8081, () => {
-    console.log("Server is running on port 8081");
-});
+app.listen(8081);
+console.log("Server Running");
