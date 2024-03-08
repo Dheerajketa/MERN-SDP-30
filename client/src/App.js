@@ -17,6 +17,7 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
           </Routes>
           <footer className="text-center py-2 text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} BFMS. All rights reserved.
