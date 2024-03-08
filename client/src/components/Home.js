@@ -5,6 +5,7 @@ import Newsletter from './Home/Newsletter'
 import Stats from './Home/Stats'
 import Base from './Home/Base'
 import { Link } from 'react-router-dom';
+import Team from './Home/Team';
 import Services from './Home/Services'
 import StatsTwo from './Home/StatsTwo'
 export default function () {
