@@ -19,6 +19,7 @@ export default function () {
       <Services/>
       <Stats />
       <StatsTwo/>
+      <Team/>
       <Newsletter />
     </div></>
     

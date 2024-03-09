@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import UserNav from './UserNav';
 const BankingDashboard = () => {
   const accountBalance = 5000; // Replace this with real data from your server
   const recentTransactions = [
@@ -20,19 +20,8 @@ const BankingDashboard = () => {
 
   return (
     <div>
-      <h1>Banking Dashboard</h1>
-      <p>Your account balance is: ${accountBalance}</p>
-      <h2>Recent Transactions</h2>
-      <ul>
-        {recentTransactions.map((transaction) => (
-          <li key={transaction.id}>
-            {transaction.amount > 0 ? '+' : '-'} ${transaction.amount} {transaction.type} - {transaction.date}
-          </li>
-        ))}
-      </ul>
-      <Link to="/transfer">Transfer Money</Link>
-      <br />
-      <Link to="/loan">Apply for a Loan</Link>
+      <UserNav/>
+      
     </div>
   );
 };
