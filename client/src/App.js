@@ -9,6 +9,8 @@ import Register from './components/data/Register';
 import Dashboard from './components/user/Dashboard';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navbare from './components/Home/Navbar';
+import Loan from './components/user/Loan';
+import TransferMoney from './components/user/TransferMoney';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/loan" element={<Loan/>} />
+            <Route path="/transfer" element={<TransferMoney/>} />
           </Routes>
           <footer className="text-center py-2 text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} BFMS. All rights reserved.
