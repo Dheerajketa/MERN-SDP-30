@@ -14,7 +14,6 @@ import CheckBalance from './components/user/CheckBalance';
 function App() {
   return (
     <>
-    <CheckBalance/>
     <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
@@ -22,7 +21,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/loan" element={<Loan/>} />
             <Route path="/transfer" element={<TransferMoney/>} />
-            <Route path="/balance" element={<Balance/>} />
+            <Route path="/balance" element={<CheckBalance/>} />
           </Routes>
           
     </>

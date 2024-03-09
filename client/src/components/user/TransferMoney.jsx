@@ -2,28 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import UserNav from './UserNav';
 
-export default function Transfermoney() {
-  const [email, setEmail] = useState('');
-  const [amount, setAmount] = useState(0);
-  const [balance, setBalance] = useState(null);
+function TransferMoney() {
+  const [senderMobile, setSenderMobile] = useState('');
+  const [recipientMobile, setRecipientMobile] = useState('');
+  const [amount, setAmount] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
-  const handleTransaction = async () => {
+  const transferMoney = async () => {
     try {
-      await axios.post('http://localhost:8081/transaction', { email, amount });
-      alert('Transaction successful');
-    } catch (error) {
-      console.error('Error during transaction:', error);
-      alert('Error during transaction');
-    }
-  };
+      const response = await axios.post('http://localhost:8081/transfer', {
+        senderMobile,
+        recipientMobile,
+        amount
+      });
 
-  const handleCheckBalance = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8081/balance/${email}`);
-      setBalance(response.data.balance);
+      setMessage(response.data);
+      setError('');
     } catch (error) {
-      console.error('Error checking balance:', error);
-      alert('Error checking balance');
+      console.error('Error transferring money:', error.response.data);
+      setMessage('');
+      setError(error.response.data);
     }
   };
 
@@ -31,24 +30,35 @@ export default function Transfermoney() {
     <>
     <UserNav/>
     <div>
-      <h1>Banking App</h1>
-      <div>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div>
-        <label>Amount:</label>
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
-      </div>
-      <button onClick={handleTransaction}>Make Transaction</button>
-      <button onClick={handleCheckBalance}>Check Balance</button>
-      {balance !== null && (
-        <div>
-          <h2>Balance: ${balance}</h2>
-        </div>
-      )}
+      <h2>Transfer Money</h2>
+      <label htmlFor="senderMobile">Sender Mobile Number:</label>
+      <input
+        type="text"
+        id="senderMobile"
+        value={senderMobile}
+        onChange={(e) => setSenderMobile(e.target.value)}
+      />
+      <label htmlFor="recipientMobile">Recipient Mobile Number:</label>
+      <input
+        type="text"
+        id="recipientMobile"
+        value={recipientMobile}
+        onChange={(e) => setRecipientMobile(e.target.value)}
+      />
+      <label htmlFor="amount">Amount:</label>
+      <input
+        type="text"
+        id="amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button onClick={transferMoney}>Transfer Money</button>
+      {message && <p>{message}</p>}
+      {error && <p>{error}</p>}
     </div>
     </>
+    
   );
 }
 
+export default TransferMoney;

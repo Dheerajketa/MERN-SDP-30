@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import UserNav from './UserNav';
 
 function CheckBalance() {
   const [mobile, setMobile] = useState('');
@@ -24,6 +25,8 @@ function CheckBalance() {
   };
 
   return (
+    <>
+    <UserNav/>
     <div>
       <h2>Check Balance</h2>
       <label htmlFor="mobile">Enter Mobile Number:</label>
@@ -37,6 +40,8 @@ function CheckBalance() {
       {balance && <p>Balance: ${balance}</p>}
       {error && <p>{error}</p>}
     </div>
+    </>
+    
   );
 }
 

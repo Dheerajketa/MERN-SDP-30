@@ -69,8 +69,58 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/transfer', async (req, res) => {
+    try {
+        const { senderMobile, recipientMobile, amount } = req.body;
+        const sender = await col.findOne({ mobile: senderMobile });
+        const recipient = await col.findOne({ mobile: recipientMobile });
+
+        if (!sender || !recipient) {
+            return res.status(404).send("Sender or recipient not found");
+        }
+
+        const transferAmount = parseFloat(amount); // Convert amount to a number
+
+        if (isNaN(transferAmount) || transferAmount <= 0) {
+            return res.status(400).send("Invalid amount");
+        }
+
+        const senderBalance = parseFloat(sender.balance);
+        const recipientBalance = parseFloat(recipient.balance);
+
+        if (isNaN(senderBalance) || isNaN(recipientBalance)) {
+            return res.status(500).send("Invalid balance format");
+        }
+
+        if (senderBalance < transferAmount) {
+            return res.status(400).send("Insufficient balance");
+        }
+
+        // Update sender's balance
+        await col.updateOne(
+            { mobile: senderMobile },
+            { $set: { balance: (senderBalance - transferAmount).toString() } }
+        );
+
+        // Update recipient's balance by incrementing
+        await col.updateOne(
+            { mobile: recipientMobile },
+            { $set: { balance: (recipientBalance + transferAmount).toString() } }
+        );
+
+        res.send("Transfer successful");
+    } catch (error) {
+        console.error("Error transferring money:", error);
+        res.status(500).send("Error transferring money");
+    }
+});
+
+
+
+
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    
 });
