@@ -14,14 +14,16 @@ export default function () {
     
     <Navigation/>
     <Banner/>
+    
     <div className="flex flex-col min-h-screen">
       <Base/>
       <Services/>
       <Stats />
-      <StatsTwo/>
-      <Team/>
       <Newsletter />
-    </div></>
+    </div>
+    
+    
+    </>
     
   )
 }

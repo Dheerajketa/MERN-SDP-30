@@ -95,14 +95,14 @@ const services = [
 const Services = () => {
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-      <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8 ">
         <h2 className="sr-only">Services</h2>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 group sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-white rounded-lg overflow-hidden shadow-md"
+              className="bg-white rounded-lg overflow-hidden shadow-md   transition-transform duration-300 transform group hover:scale-105"
             >
               <img
                 src={service.imageSrc}

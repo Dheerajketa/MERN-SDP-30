@@ -29,7 +29,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error('Error during login:', error);
-      setError('Error during login');
+      setError('Incorrect Email or password');
     }
   };
 

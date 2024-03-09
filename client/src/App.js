@@ -1,7 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import Navigation from './components/Navigation'
-import Newsletter from './components/Home/Newsletter';
 import Home from './components/Home';
 import Login from './components/data/Login';
 import Stats from './components/Home/Stats'
