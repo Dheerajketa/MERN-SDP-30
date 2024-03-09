@@ -37,6 +37,19 @@ app.post('/insert', async (req, res) => {
         res.status(500).send("Error inserting data");
     }
 });
+app.post('/balance', async (req, res) => {
+    try {
+        const { mobile } = req.body;
+        const user = await col.findOne({ mobile });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        res.json({ balance: user.balance });
+    } catch (error) {
+        console.error("Error checking balance:", error);
+        res.status(500).send("Error checking balance");
+    }
+});
 
 app.post('/login', async (req, res) => {
     try {

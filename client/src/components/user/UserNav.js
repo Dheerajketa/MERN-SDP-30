@@ -35,15 +35,13 @@ export default function UserNav() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    <a
-                      href="#"
-                      className={classNames(
-                        'bg-gray-900 text-white',
+                  <Link to="/dashboard"
+                    className={classNames(
+                        'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )}
-                    >
-                      Dashboard
-                    </a>
+                    >Dashboard
+                    </Link>
                     <Link to="/transfer"
                     className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',

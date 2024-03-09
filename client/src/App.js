@@ -9,10 +9,12 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navbare from './components/Home/Navbar';
 import Loan from './components/user/Loan';
 import TransferMoney from './components/user/TransferMoney';
-
+import Balance from './components/user/Balance';
+import CheckBalance from './components/user/CheckBalance';
 function App() {
   return (
     <>
+    <CheckBalance/>
     <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
@@ -20,10 +22,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/loan" element={<Loan/>} />
             <Route path="/transfer" element={<TransferMoney/>} />
+            <Route path="/balance" element={<Balance/>} />
           </Routes>
-          <footer className="text-center py-2 text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} BFMS. All rights reserved.
-      </footer>
+          
     </>
     
   );
