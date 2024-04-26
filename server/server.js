@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
-
+const admin = require("../server/models/Admin")
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -91,6 +91,29 @@ app.post('/login', async (req, res) => {
         res.status(500).send("Error during login");
     }
 });
+
+//adminlogin
+app.post('/adminlogin', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const Admin = await admin.findOne({ username });
+  
+      if (!Admin) {
+        return res.status(401).send('Invalid username or password');
+      }
+  
+      const passwordMatch = await bcrypt.compare(password, Admin.password);
+      if (!passwordMatch) {
+        return res.status(401).send('Invalid username or password');
+      }
+  
+      res.send('Admin login successful');
+    } catch (error) {
+      console.error('Error during admin login:', error);
+      res.status(500).send('Error during admin login');
+    }
+  });
+
 // app.post('/login',async(req,res)=>{
 //     try{
 //         const s = await request.body;

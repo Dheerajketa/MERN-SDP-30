@@ -35,18 +35,19 @@ function App() {
     localStorage.setItem("isAdminLoggedIn", "true");
     setIsAdminLoggedIn(true);
   };
+  
   return (
     <>
     <Routes>
             <Route path="/" element={<Home onAdminLogin={onAdminLogin} onCustomerLogin={onCustomerLogin}/>} />
-            <Route path="/login" element={<Login onAdminLogin={onAdminLogin} onCustomerLogin={onCustomerLogin} />} />
+            <Route path="/login" element={<Login  onCustomerLogin={onCustomerLogin} />} />
             <Route path="/register" element={<Register/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path='/admindashboard' element={<AdminDashboard/>}/>
             <Route path="/loan" element={<Loan/>} />
             <Route path="/transfer" element={<TransferMoney/>} />
             <Route path="/balance" element={<CheckBalance/>} />
-            <Route path="/adminlogin" element={<AdminLogin/>} />
+            <Route path="/adminlogin" element={<AdminLogin onAdminLogin={onAdminLogin}/>} />
           </Routes>
           
     </>

@@ -11,8 +11,8 @@ export default function AdminNav() {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("isCustomerLoggedIn");
-    localStorage.removeItem("User");
+    localStorage.removeItem("isAdminLoggedIn");
+    localStorage.removeItem("Admin");
     navigate("/");
     window.location.reload();
   };

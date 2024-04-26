@@ -1,0 +1,52 @@
+.check-balance-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .balance-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .check-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .check-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .balance-info {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .error-message {
+    margin-top: 20px;
+    color: #ff0000;
+    font-weight: bold;
+  }
+  

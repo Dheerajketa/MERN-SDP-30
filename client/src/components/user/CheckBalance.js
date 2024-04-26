@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import UserNav from './UserNav';
+import './Dashboard.css'; // Importing custom CSS for styling
 
 function CheckBalance() {
+  
   const [mobile, setMobile] = useState('');
   const [balance, setBalance] = useState('');
   const [error, setError] = useState('');
@@ -26,22 +28,24 @@ function CheckBalance() {
 
   return (
     <>
-    <UserNav/>
-    <div>
-      <h2>Check Balance</h2>
-      <label htmlFor="mobile">Enter Mobile Number:</label>
-      <input
-        type="text"
-        id="mobile"
-        value={mobile}
-        onChange={(e) => setMobile(e.target.value)}
-      />
-      <button onClick={checkBalance}>Check Balance</button>
-      {balance && <p>Balance: ${balance}</p>}
-      {error && <p>{error}</p>}
-    </div>
+      <UserNav/>
+      <div className="check-balance-container">
+        <h2 className="balance-heading">Check Balance</h2>
+        <div className="input-container">
+          <label htmlFor="mobile" className="input-label">Enter Mobile Number:</label>
+          <input
+            type="text"
+            id="mobile"
+            className="input-field"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
+        </div>
+        <button className="check-button" onClick={checkBalance}>Check Balance</button>
+        {balance && <p className="balance-info">Balance: ${balance}</p>}
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </>
-    
   );
 }
 

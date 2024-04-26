@@ -4,7 +4,7 @@ import axios from 'axios';
 import logo from '../../images/Project logo.png';
 import AdminDashboard from '../user/AdminDashboard';
 
-export default function AdminLogin({onCustomerLogin}) {
+export default function AdminLogin({onAdminLogin}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -22,16 +22,9 @@ export default function AdminLogin({onCustomerLogin}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8081/login', formData);
-      if (response.status === 200) {
-        console.log(response.data);
-        onCustomerLogin()
-        localStorage.setItem("User",response)
-        localStorage.setItem("userEmail",formData.email)
-        navigate('/dashboard');
-      } else {
-        setError('Incorrect email or password');
-      }
+      onAdminLogin();
+    localStorage.setItem("email", formData.email);
+    navigate('/admindashboard');
     } catch (error) {
       console.error('Error during login:', error);
       setError('Incorrect Email or password');
@@ -88,7 +81,7 @@ export default function AdminLogin({onCustomerLogin}) {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  
                   autoComplete="current-password"
                   required
                   onChange={handleChange}

@@ -8,7 +8,7 @@ const Dashboard = () =>
   const [userData, setUserData] = useState({});
   const [updatedUserData, setUpdatedUserData] = useState({});
   const [error, setError] = useState("");
-
+ 
   // const handleInputChange = (e) => {
   //   setUpdatedUserData({ ...updatedUserData, [e.target.name]: e.target.value });
   // };
@@ -22,9 +22,10 @@ const Dashboard = () =>
     const userEmail = localStorage.getItem("userEmail")
     if(userEmail)
     {
-      axios.get(`/getuserbyemail/${userEmail}`)
+      axios.get(`http://localhost:8081/getuserbyemail/${userEmail}`)
       .then((response)=>{
         setUserData(response.data)
+
       })
       .catch((error)=>{
         console.error("Error fetching user details",error)
@@ -345,10 +346,11 @@ const Dashboard = () =>
             <div className='main-grid'>
                 <div className='balance'>
                     <div className='container'>
+                      
                         <p style={{ fontSize: '1.5cqw' }}>Available Balance</p>
                         <i className="fa-brands fa-css3-alt" style={{ fontSize: '3cqw' }}></i>
                     </div>
-                    <h1 style={{ fontSize: '4cqw' }}>$ 700.000</h1>
+                    <h1 style={{ fontSize: '4cqw' }}>₹ 700.00</h1>
                     <div className='container' style={{ fontSize: '1.5cqw' }}>
                         <div className='info'>
                             <p style={{}}>Card Number</p>
@@ -360,17 +362,18 @@ const Dashboard = () =>
                         </div>
                     </div>
                 </div>
+                  
                 <div className='income'>
                     <p style={{ fontSize: '1.5cqw' }}>Income</p>
                     <div className='container'>
-                        <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ $1000</h3>
+                        <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ ₹1000</h3>
                         <i className="fa-solid fa-signal" style={{ fontSize: '2cqw' }}></i>
                     </div>
                 </div>
                 <div className='spending'>
                     <p style={{ fontSize: '1.5cqw' }}>Spending</p>
                     <div className='container'>
-                        <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $3000</h3>
+                        <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹3000</h3>
                         <i className="fa-solid fa-sack-dollar" style={{ fontSize: '2cqw' }}></i>
                     </div>
                 </div>
@@ -388,7 +391,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw' }}>Yesterday</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $60</h3>
+                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹60</h3>
                         </div>
                         <div className='payment'>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -398,7 +401,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw', whiteSpace: 'nowrap' }}>2 days ago</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $60</h3>
+                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹60</h3>
                         </div>
                         <div className='payment'>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -408,7 +411,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw' }}>1 month ago</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $60</h3>
+                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹60</h3>
                         </div>
                     </div>
                 </div>
@@ -426,7 +429,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw' }}>Yesterday</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ $300</h3>
+                            <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ ₹300</h3>
                         </div>
                         <div className='payment'>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -436,7 +439,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw' }}>Yesterday</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $300</h3>
+                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹300</h3>
                         </div>
                         <div className='payment'>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -446,7 +449,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw' }}>4 days ago</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- $60</h3>
+                            <h3 style={{ color: 'var(--red)', fontSize: '2cqw' }}>- ₹60</h3>
                         </div>
                         <div className='payment'>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -456,7 +459,7 @@ const Dashboard = () =>
                                     <p style={{ color: 'var(--slight-white)', fontSize: '1.2cqw', whiteSpace: 'nowrap' }}>7 days ago</p>
                                 </div>
                             </div>
-                            <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ $850</h3>
+                            <h3 style={{ color: 'var(--green)', fontSize: '2cqw' }}>+ ₹850</h3>
                         </div>
                     </div>
                 </div>
