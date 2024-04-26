@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "title": "Personal Loan",
+      "loanAmount": "$10,000",
+      "interestRate": "8%",
+      "loanTerm": "3 years"
+    },
+    {
+      "id": 2,
+      "title": "Home Loan",
+      "loanAmount": "$200,000",
+      "interestRate": "4.5%",
+      "loanTerm": "20 years"
+    },
+    {
+      "id": 3,
+      "title": "Car Loan",
+      "loanAmount": "$25,000",
+      "interestRate": "6%",
+      "loanTerm": "5 years"
+    },
+    {
+      "id": 4,
+      "title": "Education Loan",
+      "loanAmount": "$50,000",
+      "interestRate": "7.5%",
+      "loanTerm": "10 years"
+    },
+    {
+      "id": 5,
+      "title": "Business Loan",
+      "loanAmount": "$100,000",
+      "interestRate": "9%",
+      "loanTerm": "7 years"
+    },
+    {
+      "id": 6,
+      "title": "Medical Loan",
+      "loanAmount": "$20,000",
+      "interestRate": "5%",
+      "loanTerm": "3 years"
+    },
+    {
+      "id": 7,
+      "title": "Vacation Loan",
+      "loanAmount": "$15,000",
+      "interestRate": "7%",
+      "loanTerm": "2 years"
+    },
+    {
+      "id": 8,
+      "title": "Wedding Loan",
+      "loanAmount": "$30,000",
+      "interestRate": "8.5%",
+      "loanTerm": "5 years"
+    },
+    {
+      "id": 9,
+      "title": "Home Improvement Loan",
+      "loanAmount": "$40,000",
+      "interestRate": "6.5%",
+      "loanTerm": "10 years"
+    },
+    {
+      "id": 10,
+      "title": "Debt Consolidation Loan",
+      "loanAmount": "$75,000",
+      "interestRate": "7%",
+      "loanTerm": "15 years"
+    }
+  ]
+  

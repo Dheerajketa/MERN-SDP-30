@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function UserNav() {
+export default function AdminNav() {
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -44,13 +44,7 @@ export default function UserNav() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                  <Link to="/dashboard"
-                    className={classNames(
-                        'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
-                      )}
-                    >Dashboard
-                    </Link>
+                  
                     <Link to="/transfer"
                     className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -58,18 +52,26 @@ export default function UserNav() {
                       )}
                     >Transfer Money
                     </Link>
-                      <Link to="/loan"
+                      <Link to="/approveloan"
                       className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
-                      )}>Apply for a Loan 
+                      )}>Approve Loan
                       </Link>
-                      <Link to="/balance"
+                      <Link to="/approveloan"
                       className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
-                      )}>check balance 
+                      )}>Approve User
                       </Link>
+                      <Link to="/approveloan"
+                      className={classNames(
+                        'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'rounded-md px-3 py-2 text-sm font-medium'
+                      )}>List of users
+                      </Link>
+
+                      
                       
 
                     

@@ -1,8 +1,38 @@
-import { Link } from 'react-router-dom';
-import UserNav from './UserNav';
-import React from 'react';
 
-const Dashboard = () => {
+import UserNav from './UserNav';
+import React, { useEffect,useState } from 'react';
+import axios from 'axios'
+
+const Dashboard = () => 
+{
+  const [userData, setUserData] = useState({});
+  const [updatedUserData, setUpdatedUserData] = useState({});
+  const [error, setError] = useState("");
+
+  // const handleInputChange = (e) => {
+  //   setUpdatedUserData({ ...updatedUserData, [e.target.name]: e.target.value });
+  // };
+
+  // const handleUpdate = () => {
+  //   setUpdatedUserData(userData);
+  // };
+
+  useEffect(() => {
+    const user = localStorage.getItem("User")
+    const userEmail = localStorage.getItem("userEmail")
+    if(userEmail)
+    {
+      axios.get(`/getuserbyemail/${userEmail}`)
+      .then((response)=>{
+        setUserData(response.data)
+      })
+      .catch((error)=>{
+        console.error("Error fetching user details",error)
+      })
+    }
+  }, [])
+  
+
     return (
       <>
       <div className="user-nav-wrapper">

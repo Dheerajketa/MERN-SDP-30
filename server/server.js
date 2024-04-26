@@ -23,12 +23,14 @@ connectToMongoDB();
 const db = client.db("banking");
 const col = db.collection("banking");
 
+
 app.get('/home', (req, res) => {
     res.send("Hello World");
 });
 
 app.post('/insert', async (req, res) => {
     try {
+        const col = db.collection("banking");
         req.body.password = await bcrypt.hash(req.body.password, 5);
         await col.insertOne(req.body);
         res.send("Data Received");
@@ -51,23 +53,82 @@ app.post('/balance', async (req, res) => {
     }
 });
 
+// app.post('/login', async (req, res) => {
+//     try {
+//         const { email, password } = req.body; // Change username to email if you're using email for login
+//         const user = await col.findOne({ email }); // Change username to email if you're using email for login
+//         if (!user) {
+//             return res.status(401).send("Invalid username or password");
+//         }
+//         const passwordMatch = await bcrypt.compare(password, user.password);
+//         if (!passwordMatch) {
+//             return res.status(401).send("Invalid username or password");
+//         }
+//         res.send("Login successful");
+//     } catch (error) {
+//         console.error("Error during login:", error);
+//         res.status(500).send("Error during login");
+//     }
+// });
 app.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body; // Change username to email if you're using email for login
-        const user = await col.findOne({ email }); // Change username to email if you're using email for login
+        const { email, password } = req.body;
+       
+         // Change username to email if you're using email for login
+        const user = await col.find({ email }).toArray(); // Change username to email if you're using email for login
+        var role = "User"
+        console.log(Object.values(user)[0]);
         if (!user) {
             return res.status(401).send("Invalid username or password");
         }
-        const passwordMatch = await bcrypt.compare(password, user.password);
+        const passwordMatch = bcrypt.compareSync(password, Object.values(user)[0].password);
         if (!passwordMatch) {
             return res.status(401).send("Invalid username or password");
         }
-        res.send("Login successful");
+        res.status(200).send(role)
     } catch (error) {
         console.error("Error during login:", error);
         res.status(500).send("Error during login");
     }
 });
+// app.post('/login',async(req,res)=>{
+//     try{
+//         const s = await request.body;
+//         console.log(s);
+
+//         const id = Object.values(s)[0];
+//     console.log(s);
+//     const password = Object.values(s)[1];
+//     var data = await col.find({ email: id });
+//     var role = "";
+//     if (data) {
+//       role = "User";
+//     }
+//     if (data.length == 0) {
+//       data = await col1.find({ email: id });
+//       if (data) {
+//         role = "Admin";
+//       }
+//     }
+//     if (data) {
+//       const p = bcrypt.compareSync(
+//         password,
+//         Object.values(data)[0]["password"]
+//       );
+//       if (p) {
+//         console.log("Successful");
+//         response.json({ role: role, data: data });
+//       }
+//     } else {
+//       response.status(500).send("Invalid Credentials");
+//     }
+
+//     }
+//     catch(e)
+//     {
+//         console.log(e.message);
+//     }
+// })
 
 app.post('/transfer', async (req, res) => {
     try {
@@ -117,8 +178,35 @@ app.post('/transfer', async (req, res) => {
 
 
 
+app.get("/getuserbyemail",async(req,res)=>{
+    try {
+        const email = request.params.email;
+        console.log(email);
+        const userData = await col.findOne({ email });
+        console.log(userData);
+        return userData;
+        // const input = await user.find({ email });
+        // console.log(input)
+        // return input;
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).send(error.message);
+      }
+})
 
 
+app.get("/viewloans",async(req,res)=>{
+    try {
+        const data = await db.collection("Loan").find().toArray();
+        console.log(data);
+        if (!data) return res.status(404).send("No Loan Found!");
+        else {
+          res.send(data);
+        }
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+})
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

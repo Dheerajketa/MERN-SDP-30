@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../images/Project logo.png';
+import AdminDashboard from '../user/AdminDashboard';
 
-export default function Login({onCustomerLogin}) {
+export default function AdminLogin({onCustomerLogin}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -39,6 +40,7 @@ export default function Login({onCustomerLogin}) {
 
   return (
     <>
+   
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -108,11 +110,8 @@ export default function Login({onCustomerLogin}) {
             </div>
           </form><p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-            <Link to="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Register here
-            </Link>
-            <Link to="/AdminLogin" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              AdminLogin
+            <Link to="/AdminDashboard" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Login
             </Link>
           </p>
         </div>

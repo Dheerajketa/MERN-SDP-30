@@ -5,12 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../images/Project logo.png';
 
 export default function Register() {
+
+  
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,11 +31,13 @@ export default function Register() {
 
     if (!isAccountNumberValid) {
       console.error('Account number must be 12 digits');
+      setError('Account number must be 12 digits');
       return;
     }
 
     if (!isMobileValid) {
       console.error('Mobile number must be 10 digits');
+      setError('mobile number must be 10digits');
       return;
     }
 
@@ -42,7 +48,8 @@ export default function Register() {
         mobile: mobileValue,
         accountNumber: accountNumberValue,
         password: passwordValue,
-        balance: 100000 // Default account balance
+        balance: 100000, // Default account balance
+        isAdmin:false
       });
       console.log(response.data);
       navigate("/login");
@@ -137,6 +144,7 @@ export default function Register() {
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
+            {error && <p className="text-red-500">{error}</p>}
           </div>
           <div>
             <div className="flex items-center justify-between">
