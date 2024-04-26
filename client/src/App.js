@@ -1,19 +1,19 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Home from './components/Home';
 import Login from './components/data/Login';
-import Stats from './components/Home/Stats'
 import Register from './components/data/Register';
 import Dashboard from './components/user/Dashboard';
 import AdminDashboard from './components/user/AdminDashboard';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Navbare from './components/Home/Navbar';
+import {  Routes, Route, Link } from "react-router-dom";
 import Loan from './components/user/Loan';
 import TransferMoney from './components/user/TransferMoney';
-import Balance from './components/user/Balance';
 import CheckBalance from './components/user/CheckBalance';
 import { useEffect, useState } from 'react';
 import AdminLogin from './components/Admin/AdminLogin';
+import AdminTransfer from './components/Admin/AdminTransfer';
+import BankAccountDetails from './components/Admin/BankAccountDetails';
+import ApproveLoan from './components/Admin/ApproveLoan';
 function App() {
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
@@ -48,6 +48,10 @@ function App() {
             <Route path="/transfer" element={<TransferMoney/>} />
             <Route path="/balance" element={<CheckBalance/>} />
             <Route path="/adminlogin" element={<AdminLogin onAdminLogin={onAdminLogin}/>} />
+
+            <Route path="/admintransfer" element={<AdminTransfer onAdminLogin={onAdminLogin}/>} />
+            <Route path="/details" element={<BankAccountDetails onAdminLogin={onAdminLogin}/>} />
+            <Route path="/approve" element={<ApproveLoan onAdminLogin={onAdminLogin}/>} />
           </Routes>
           
     </>

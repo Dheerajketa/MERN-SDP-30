@@ -45,26 +45,21 @@ export default function AdminNav() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                   
-                    <Link to="/transfer"
+                    <Link to="/admintransfer"
                     className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )}
                     >Transfer Money
                     </Link>
-                      <Link to="/approveloan"
+                      <Link to="/approve"
                       className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )}>Approve Loan
                       </Link>
-                      <Link to="/approveloan"
-                      className={classNames(
-                        'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
-                      )}>Approve User
-                      </Link>
-                      <Link to="/approveloan"
+                      
+                      <Link to="/details"
                       className={classNames(
                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
