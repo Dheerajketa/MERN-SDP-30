@@ -24,8 +24,8 @@ const db = client.db("banking");
 const col = db.collection("banking");
 
 
-app.get('/home', (req, res) => {
-    res.send("Hello World");
+app.get('/', (req, res) => {
+    res.send("Backend");
 });
 
 app.post('/insert', async (req, res) => {
