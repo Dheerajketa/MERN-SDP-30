@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import UserNav from './UserNav';
 import './Dashboard.css'; // Importing custom CSS for styling
-
+import config from '../../config';
 function CheckBalance() {
   
   const [mobile, setMobile] = useState('');
@@ -11,7 +11,7 @@ function CheckBalance() {
 
   const checkBalance = async () => {
     try {
-      const response = await axios.post('http://localhost:8081/balance', { mobile });
+      const response = await axios.post(`${config.url}/balance`, { mobile });
 
       if (!response.data) {
         throw new Error('Empty response');

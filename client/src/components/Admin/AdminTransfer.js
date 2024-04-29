@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminNav from './AdminNav';
-
+import config from '../../config';
 function AdminTransfer() {
   const [senderMobile, setSenderMobile] = useState('');
   const [recipientMobile, setRecipientMobile] = useState('');
@@ -11,7 +11,7 @@ function AdminTransfer() {
 
   const transferMoney = async () => {
     try {
-      const response = await axios.post('${config.url}/transfer', {
+      const response = await axios.post(`${config.url}/transfer`, {
         senderMobile,
         recipientMobile,
         amount

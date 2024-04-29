@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import config from '../../config';
 function App() {
   const [mobile, setMobileNumber] = useState('');
   const [balance, setBalance] = useState(null);
 
   const handleCheckBalance = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/balance/${mobile}`);
+      const response = await axios.get(`${config.url}/balance/${mobile}`);
       setBalance(response.data.balance);
     } catch (error) {
       console.error('Error checking balance:', error);

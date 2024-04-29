@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../images/Project logo.png';
+import config from '../../config';
 
 export default function Login({onCustomerLogin}) {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function Login({onCustomerLogin}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8081/login', formData);
+      const response = await axios.post(`${config.url}/login`, formData);
       if (response.status === 200) {
         console.log(response.data);
         onCustomerLogin()

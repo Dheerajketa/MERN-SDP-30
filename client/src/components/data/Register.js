@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../images/Project logo.png';
-
+import config from '../../config';
 export default function Register() {
 
   
@@ -42,7 +42,7 @@ export default function Register() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8081/insert', {
+      const response = await axios.post(`${config.url}/insert`, {
         username: usernameValue,
         email: emailValue,
         mobile: mobileValue,

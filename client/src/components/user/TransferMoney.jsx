@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import UserNav from './UserNav';
-
+import config from '../../config';
 function TransferMoney() {
   const [senderMobile, setSenderMobile] = useState('');
   const [recipientMobile, setRecipientMobile] = useState('');
@@ -11,7 +11,7 @@ function TransferMoney() {
 
   const transferMoney = async () => {
     try {
-      const response = await axios.post('http://localhost:8081/transfer', {
+      const response = await axios.post(`${config.url}/transfer`, {
         senderMobile,
         recipientMobile,
         amount

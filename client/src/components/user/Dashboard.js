@@ -2,7 +2,7 @@
 import UserNav from './UserNav';
 import React, { useEffect,useState } from 'react';
 import axios from 'axios'
-
+import config from '../../config';
 const Dashboard = () => 
 {
   const [userData, setUserData] = useState({});
@@ -22,7 +22,7 @@ const Dashboard = () =>
     const userEmail = localStorage.getItem("userEmail")
     if(userEmail)
     {
-      axios.get(`http://localhost:8081/getuserbyemail/${userEmail}`)
+      axios.get(`${config.url}/getuserbyemail/${userEmail}`)
       .then((response)=>{
         setUserData(response.data)
 
